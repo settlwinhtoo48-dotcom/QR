@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="qrcode.min.js"></script>
+    <title>QRCODE</title>
+    <style>
+        body{
+            background-image:url('girl.gif');
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+
+        .main{
+            width:930px;
+            height:580px;
+            border:4px solid rgba(235, 226, 226, 0.729);
+            margin-top:100px;
+            margin-left:50px;
+            border-radius:50px;
+            background:rgba(229, 208, 208, 0.188);
+            backdrop-filter:blur(4px);
+            box-shadow:0 0 25px rgb(143, 239, 190);
+        }
+
+        p{
+            position:absolute;
+            font-size:50px;
+            color:rgb(117, 248, 148);
+            margin-left:15px;
+            font-style:italic;
+            text-shadow:0 0 25px rgb(99, 245, 182);
+        }
+
+        .container1{
+            position:absolute;
+            
+        }
+
+        input{
+            background:transparent;
+            border:none;
+            border-bottom:5px solid rgba(202, 226, 226, 0.516);
+            width:350px;
+            margin-top:350px;
+            margin-left:50px;
+            font-size:30px;
+            text-align:center;
+            color:rgb(105, 230, 222);
+            z-index:20;
+        }
+
+        input:hover{
+            border:none;
+            border-bottom:4px solid rgba(0, 255, 255, 0.671);
+            
+        }
+
+        input:focus{
+            outline:none;
+        }
+
+        .container2{
+            position:absolute;
+            width:400px;
+            height:400px;
+            margin-left:100px;
+            margin-top:40px;
+            margin-left:480px;
+            border: 4px solid transparent;
+            box-shadow:0 0 15px rgba(210, 235, 222, 0.667);
+            
+        }
+        
+        .container4{
+            position:absolute;
+            border:3px solid rgba(0, 255, 115, 0.279);
+            width:200px;
+            height:50px;
+            margin-top:480px;
+            margin-left:580px;
+            color:rgb(69, 240, 175);
+            font-size:30px;
+            display:none;
+        }
+
+        .container4:hover{
+            background:rgba(137, 244, 150, 0.112);
+            color:rgb(122, 234, 244);
+            text-shadow:0 0 25px rgb(61, 241, 61);
+            box-shadow:0 0 25px rgba(128, 255, 255, 0.59);
+        }
+
+        .container3{
+            position:absolute;
+            color:rgb(114, 252, 187);
+            margin-top:480px;
+            margin-left:50px;
+            width:300px;
+            height:50px;
+            border:3px solid rgba(0, 255, 255, 0.304);
+            font-size:30px;
+            text-shadow:0 0 25px aqua;
+        }
+
+        .container3:hover{
+            background:rgba(43, 225, 43, 0.158);
+            color:cyan;
+            box-shadow:0 0 25px rgb(119, 236, 236);
+        }
+
+        @property --angle{
+            syntax:'<angle>';
+            initial-value:0deg;
+            inherits:false;    
+        }
+
+        .box {
+            --x: 50%;
+            --y: 50%;
+            border-radius: 20px;      
+            background-image:linear-gradient(rgb(28, 20, 20),rgb(19, 16, 16)),conic-gradient(from var(--angle),rgb(76, 253, 164),rgb(118, 250, 244),rgba(20, 28, 30, 0),rgba(23, 33, 23, 0),rgba(38, 56, 55, 0),rgba(37, 52, 41, 0),rgba(30, 21, 21, 0),rgba(20, 28, 30, 0),rgba(23, 33, 23, 0),rgba(38, 56, 55, 0),rgba(37, 52, 41, 0),rgba(30, 21, 21, 0),rgb(76, 253, 164));
+            background-origin:border-box;
+            background-clip:padding-box,border-box;      
+            animation: linearLoop 3s linear infinite;
+            display: grid;
+            place-items: center;
+            
+        }
+
+        .box p {
+            pointer-events: none;
+        }
+
+        .box.active {
+            animation: none;
+            background:
+            linear-gradient(#161b22, #161b22) padding-box,
+            radial-gradient(circle 140px at var(--x) var(--y), rgb(0, 255, 64),cyan, transparent) border-box;
+            background-size: auto, auto;
+            background-position: 0 0, 0 0;
+        }
+
+        .container4.box{
+                display:none;
+        }
+
+        @keyframes linearLoop {
+           to{--angle:360deg;}
+        }
+        
+
+        .gif1{
+            background-image:url('girl2transparent.gif');
+            width:400px;
+            height:300px;
+            position:absolute;
+            background-repeat:no-repeat;
+            background-size:contain;
+            z-index:10;
+            margin-top:163px;
+            margin-left:60px;
+            pointer-events:none;
+        }
+
+        .gif2{
+            background-image:url('color1.gif');
+            width:400px;
+            height:300px;
+            position:absolute;
+            background-repeat:no-repeat;
+            background-size:contain;
+            z-index:10;
+            margin-top:163px;
+            margin-left:60px;
+            pointer-events:none;
+            display:none;
+        }
+
+        .qrcode{
+            z-index:15;
+            position:absolute;
+            pointer-events:none;
+        }
+
+        #qrcode img{
+            border:10px solid white;
+            border-radius:5px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="titile"><p>QR Code Generator</p></div>
+        <div class="container1">
+            <input type="text" id="input" placeholder="Write text or link">
+        </div>
+        <div class="gif1" id="gif1"></div>
+        <div class="gif2" id="gif2"></div>
+        <div class="container3 box" onclick="generate()">Generate</div>
+        <div class="container2 box" id="box">
+            <div class="qrcode" id="qrcode"></div>
+        </div>
+        <div class="container4 box" id="save" onclick="button()">Download</div>
+    </div>
+
+    <script>
+        const box = document.getElementById('box');
+
+        box.addEventListener('mousemove', (e) => {
+            box.classList.add('active');
+            box.style.setProperty('--x', e.offsetX + 'px');
+            box.style.setProperty('--y', e.offsetY + 'px');
+        });
+
+        box.addEventListener('mouseleave', () => {
+            box.classList.remove('active');
+        });
+
+
+        let qrcode=new QRCode(document.getElementById('qrcode'),{width:300,height:300});
+        
+        function generate(){
+            let input=document.getElementById('input').value;
+            if(input.trim()===""){alert('Write Something!');return;}
+            qrcode.makeCode(input);
+            alert('Success!');
+            document.getElementById('save').style.display="grid";
+        }
+
+        document.getElementById('input').addEventListener('mouseenter',() => {
+            document.getElementById('gif2').style.display="block";
+            document.getElementById('gif1').style.display="none";
+        })
+
+        document.getElementById('input').addEventListener('mouseleave',() => {
+            document.getElementById('gif2').style.display="none";
+            document.getElementById('gif1').style.display="block";
+        })
+
+        
+        function button(){
+            let qrImage=document.querySelector('#qrcode img');
+            let downloadLink=document.createElement('a');
+            downloadLink.href=qrImage.src;
+            downloadLink.download="my_qr_code.png";
+            downloadLink.click();
+        }
+    </script>
+</body>
+</html>
